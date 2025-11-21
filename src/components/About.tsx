@@ -40,7 +40,7 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-full blur-2xl opacity-30" />
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
                   <img
-                    src={`../../../public/profile.jpg`}
+                    src={`/profile.jpg`}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
@@ -72,7 +72,7 @@ const About = () => {
                     key={index}
                     className="p-4 border-border hover:border-primary transition-colors duration-300 hover:shadow-md"
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex cursor-default items-start gap-4">
                       <div className="p-3 bg-accent rounded-lg">
                         <item.icon className="w-6 h-6 text-primary" />
                       </div>

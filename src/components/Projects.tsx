@@ -24,18 +24,22 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "E-commerce Platform",
-      shortDescription: "Plataforma completa de e-commerce com painel admin",
+      title: "Staff-Schedules",
+      shortDescription: "WebApp para gerenciamento de escalas de funcionários",
       description:
-        "Sistema completo de e-commerce com carrinho de compras, checkout, painel administrativo e integração de pagamentos.",
+        "Sistema completo para criação, gerenciamento e visualização de escalas de trabalho, com notificações e integração com calendários. Sendo possivel gerar escalas diárias, semanais e mensais de forma intuitiva com base nos dados dos funcionários.",
       images: [
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=500&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop",
+        "/projects_imgs/staff-schedule.png",
+        "/projects_imgs/staff-schedule1.png",
+        "/projects_imgs/staff-schedule2.png",
+        "/projects_imgs/staff-schedule3.png",
+        "/projects_imgs/staff-schedule4.png",
+        "/projects_imgs/staff-schedule5.png",
+        "/projects_imgs/staff-schedule6.png",
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
-      github: "https://github.com",
-      demo: "https://demo.com",
+      technologies: ["Next.Js", "Node.js", "PostgreSQL", "Tailwind CSS"],
+      github: "https://github.com/Bruno-freire/Staff-Schedule",
+      demo: "https://staff-schedule.vercel.app/",
       objectives:
         "Criar uma plataforma escalável de e-commerce com foco em performance e UX",
       challenges:
@@ -208,7 +212,7 @@ const Projects = () => {
                 <img
                   src={selectedProject.images[currentImageIndex]}
                   alt={`${selectedProject.title} - ${currentImageIndex + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
 
                 {selectedProject.images.length > 1 && (
