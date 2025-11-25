@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowDown, ArrowRight, Download } from "lucide-react";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -52,14 +52,24 @@ const Hero = () => {
               Ver Projetos
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-base sm:text-lg px-6 sm:px-8"
+            >
+              <a href="/bruno_freire_curriculoFS.pdf" download="BrunoFreire_Curriculo.pdf">
+                <Download className="mr-2 w-5 h-5" />
+                Baixar Currículo
+              </a>
+            </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("contact")}
               className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-base sm:text-lg px-6 sm:px-8"
             >
-              <Download className="mr-2 w-5 h-5" />
+              <ArrowDown className="mr-2 w-5 h-5" />
               Entrar em Contato
             </Button>
           </div>
