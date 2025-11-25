@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Github, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -11,8 +17,8 @@ interface Project {
   shortDescription: string;
   images: string[];
   technologies: string[];
-  github: string;
-  demo: string;
+  github?: string;
+  demo?: string;
   objectives: string;
   challenges: string;
 }
@@ -59,7 +65,6 @@ const Projects = () => {
       ],
       technologies: ["Next.js", "TypeScript"],
       github: "https://github.com/Bruno-freire/product-manager",
-      demo: "https://product-manager-p7tf.vercel.app/",
       objectives:
         "Fornecer uma ferramenta simples para monitorar e gerenciar o estoque de produtos de forma eficiente, para garantir a integridade do estoque do cliente",
       challenges:
@@ -72,12 +77,11 @@ const Projects = () => {
       description:
         "Aplicação web focada em organização financeira, permitindo ao usuário planejar salário, controlar gastos, acompanhar balanços, atingir metas e manter estabilidade econômica de forma prática.",
       images: [
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+        "/projects_imgs/salario-inteligente1.png",
+        "/projects_imgs/salario-inteligente2.png",
+        "/projects_imgs/salario-inteligente3.png",
       ],
       technologies: ["React", "Supabase", "TypeScript", "TailwindCSS"],
-      github: "https://github.com",
-      demo: "https://demo.com",
       objectives:
         "Fornecer uma plataforma funcional para controle de salário, despesas e planejamento financeiro.",
       challenges:
@@ -166,24 +170,36 @@ const Projects = () => {
 
                   {/* Action buttons */}
                   <div className="flex gap-3 pt-2">
+                    {/* GitHub */}
                     <Button
                       size="sm"
                       variant="outline"
-                      className="flex-1"
+                      className={`flex-1 ${
+                        project.github ? "" : "opacity-50 cursor-not-allowed"
+                      }`}
+                      disabled={!project.github}
                       onClick={(e) => {
                         e.stopPropagation();
-                        window.open(project.github, "_blank");
+                        if (project.github)
+                          window.open(project.github, "_blank");
                       }}
                     >
                       <Github className="w-4 h-4 mr-2" />
                       GitHub
                     </Button>
+
+                    {/* Demo */}
                     <Button
                       size="sm"
-                      className="flex-1 bg-primary hover:bg-primary-dark"
+                      className={`flex-1 bg-primary ${
+                        project.demo
+                          ? "hover:bg-primary-dark"
+                          : "opacity-50 cursor-not-allowed"
+                      }`}
+                      disabled={!project.demo}
                       onClick={(e) => {
                         e.stopPropagation();
-                        window.open(project.demo, "_blank");
+                        if (project.demo) window.open(project.demo, "_blank");
                       }}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -291,17 +307,36 @@ const Projects = () => {
 
                 {/* Action buttons */}
                 <div className="flex gap-3 pt-4">
+                  {/* GitHub */}
                   <Button
                     variant="outline"
-                    className="flex-1"
-                    onClick={() => window.open(selectedProject.github, "_blank")}
+                    className={`flex-1 ${
+                      selectedProject.github
+                        ? ""
+                        : "opacity-50 cursor-not-allowed"
+                    }`}
+                    disabled={!selectedProject.github}
+                    onClick={() => {
+                      if (selectedProject.github)
+                        window.open(selectedProject.github, "_blank");
+                    }}
                   >
                     <Github className="w-5 h-5 mr-2" />
                     Ver no GitHub
                   </Button>
+
+                  {/* Demo */}
                   <Button
-                    className="flex-1 bg-primary hover:bg-primary-dark"
-                    onClick={() => window.open(selectedProject.demo, "_blank")}
+                    className={`flex-1 bg-primary ${
+                      selectedProject.demo
+                        ? "hover:bg-primary-dark"
+                        : "opacity-50 cursor-not-allowed"
+                    }`}
+                    disabled={!selectedProject.demo}
+                    onClick={() => {
+                      if (selectedProject.demo)
+                        window.open(selectedProject.demo, "_blank");
+                    }}
                   >
                     <ExternalLink className="w-5 h-5 mr-2" />
                     Ver Demo Live

@@ -28,7 +28,7 @@ const Hero = () => {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
+          <h1 className="text-4xl select-none sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
             Olá, sou{" "}
             <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
               Desenvolvedor Full Stack

@@ -17,7 +17,7 @@ const Footer = () => {
             {/* Logo */}
             <div className="text-2xl font-bold">
               <span className="bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent">
-                &lt;Dev/&gt;
+                &lt;Bruno Freire/&gt;
               </span>
             </div>
 

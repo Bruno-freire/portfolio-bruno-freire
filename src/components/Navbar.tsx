@@ -45,7 +45,7 @@ const Navbar = () => {
             onClick={() => scrollToSection("home")}
             className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent hover:opacity-80 transition-opacity"
           >
-            &lt;Dev/&gt;
+            &lt;Bruno Freire/&gt;
           </button>
 
           {/* Desktop Navigation */}
