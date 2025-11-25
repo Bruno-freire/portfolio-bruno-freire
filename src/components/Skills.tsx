@@ -30,6 +30,7 @@ const Skills = () => {
       "REST API",
       "GraphQL",
       "Microservices",
+      "WebSockets",
     ],
   },
   {
