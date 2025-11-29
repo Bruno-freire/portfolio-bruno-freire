@@ -58,14 +58,14 @@ const About = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Sou um desenvolvedor Full Stack com experiência prática na
                 criação de aplicações modernas utilizando Nest.js, TypeScript,
-                React e Next.js. Formando em análise e desenvolvimento de
+                React e Next.js. Formado em análise e desenvolvimento de
                 sistemas, tenho conhecimento para transformar problemas reais em
                 soluções funcionais, escaláveis e bem estruturadas.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Trabalho com foco em arquitetura limpa, boas práticas e código
-                de fácil manutenção. Costumo atuar no backend com Express,
-                NestJS, Prisma, PostgreSQL e MongoDB, e no frontend com React,
+                de fácil manutenção. Costumo atuar no backend com NestJS,Express, Fastify
+                Prisma, PostgreSQL e MongoDB, e no frontend com React,
                 Next.js e Tailwind. Gosto de aprender, evoluir e enfrentar
                 desafios que realmente exigem raciocínio, organização e clareza
                 técnica.
