@@ -12,12 +12,14 @@ const About = () => {
     {
       icon: Rocket,
       title: "Performance",
-      description: "Criação de APIs rápidas, seguras e resistentes, pensando em crescimento e alta demanda.",
+      description:
+        "Criação de APIs rápidas, seguras e resistentes, pensando em crescimento e alta demanda.",
     },
     {
       icon: Lightbulb,
       title: "Inovação",
-      description: "Sempre estudando novas tecnologias e buscando aprimorar processos, fluxo de trabalho e produtividade.",
+      description:
+        "Sempre estudando novas tecnologias e buscando aprimorar processos, fluxo de trabalho e produtividade.",
     },
   ];
 
@@ -37,10 +39,13 @@ const About = () => {
             {/* Profile image */}
             <div className="flex justify-center animate-fade-in">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-full blur-2xl opacity-30" />
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
+                {/* Glow AO REDOR */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-xl blur-2xl opacity-30" />
+
+                {/* Container da imagem */}
+                <div className="relative w-64 md:w-80 aspect-[9/16] rounded-xl overflow-hidden border-2 border-primary shadow-2xl">
                   <img
-                    src={`/profile.jpg`}
+                    src="/profile.png"
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
@@ -53,7 +58,8 @@ const About = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Sou um desenvolvedor Full Stack com experiência prática na
                 criação de aplicações modernas utilizando Nest.js, TypeScript,
-                React e Next.js. Formando em análise e desenvolvimento de sistemas, tenho conhecimento para transformar problemas reais em
+                React e Next.js. Formando em análise e desenvolvimento de
+                sistemas, tenho conhecimento para transformar problemas reais em
                 soluções funcionais, escaláveis e bem estruturadas.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
