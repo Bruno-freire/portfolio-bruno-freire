@@ -98,11 +98,11 @@ const Skills = () => {
                   </h3>
 
                   {/* Skills list */}
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-muted-foreground mx-auto w-fit">
                     {category.skills.map((skill, skillIndex) => (
                       <li
                         key={skillIndex}
-                        className="flex items-center justify-center gap-2 hover:text-primary transition-colors"
+                        className="flex items-center justify-start gap-2 hover:text-primary transition-colors"
                       >
                         <span className="w-1.5 h-1.5 bg-primary rounded-full" />
                         {skill}
