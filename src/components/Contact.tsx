@@ -95,6 +95,10 @@ const Contact = () => {
     },
   ];
 
+  // CLASSES REUTILIZADAS NOS INPUTS
+  const inputStyle =
+    "focus-visible:ring-0 focus-visible:ring-offset-0 border-border transition-all duration-300 hover:border-primary hover:shadow-md focus:border-primary focus:shadow-lg";
+
   return (
     <section id="contact" className="section bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -160,7 +164,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="Seu nome"
                       required
-                      className="border-border focus:border-primary"
+                      className={inputStyle}
                     />
                   </div>
 
@@ -177,7 +181,7 @@ const Contact = () => {
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Sua empresa"
-                      className="border-border focus:border-primary"
+                      className={inputStyle}
                     />
                   </div>
                 </div>
@@ -198,7 +202,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="seu@email.com"
                       required
-                      className="border-border focus:border-primary"
+                      className={inputStyle}
                     />
                   </div>
 
@@ -216,7 +220,7 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="(11) 99999-9999"
-                      className="border-border focus:border-primary"
+                      className={inputStyle}
                     />
                   </div>
                 </div>
@@ -236,7 +240,7 @@ const Contact = () => {
                     placeholder="Conte-me sobre seu projeto ou oportunidade..."
                     rows={6}
                     required
-                    className="border-border focus:border-primary resize-none"
+                    className={`${inputStyle} resize-none`}
                   />
                 </div>
 
