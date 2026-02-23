@@ -33,7 +33,11 @@ const Projects = () => {
       title: "Staff-Schedules",
       shortDescription: "WebApp para gerenciamento de escalas de funcionários",
       description:
-        "Sistema completo para criação, gerenciamento e visualização de escalas de trabalho, com notificações e integração com calendários. Sendo possivel gerar escalas diárias, semanais e mensais de forma intuitiva com base nos dados dos funcionários.",
+        `Sistema completo para criação, gerenciamento e visualização de escalas de trabalho, com notificações e integração com calendários. Sendo possivel gerar escalas diárias, semanais e mensais de forma intuitiva com base nos dados dos funcionários. 
+        Usuário para testar a aplicação: 
+        
+        Email: usertest1@gmail.com 
+        Password: Usertest1234`,
       images: [
         "/projects_imgs/staff-schedule.png",
         "/projects_imgs/staff-schedule1.png",
@@ -272,7 +276,7 @@ const Projects = () => {
               <div className="space-y-4">
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Descrição</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground whitespace-pre-line">
                     {selectedProject.description}
                   </p>
                 </div>

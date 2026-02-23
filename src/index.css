@@ -189,3 +189,16 @@ All colors MUST be HSL.
     @apply py-20 md:py-24;
   }
 }
+
+@keyframes scrollSlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-slow {
+  animation: scrollSlow 35s linear infinite;
+}

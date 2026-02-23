@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useEffect, useRef } from "react";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -221,4 +222,125 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
 );
 CarouselNext.displayName = "CarouselNext";
 
-export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };
+const CarouselSkills = ({ skills }: { skills: any[] }) => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number>();
+  const position = useRef(0);
+  const speed = 0.5;
+
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const step = () => {
+      if (!isDragging.current) {
+        position.current -= speed;
+
+        const limit = track.scrollWidth / 2;
+
+        if (Math.abs(position.current) >= limit) {
+          position.current += limit;
+        }
+
+        track.style.transform = `translateX(${position.current}px)`;
+      }
+
+      animationRef.current = requestAnimationFrame(step);
+    };
+
+    animationRef.current = requestAnimationFrame(step);
+
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    isDragging.current = true;
+    startX.current = e.clientX;
+
+    track.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!isDragging.current || !trackRef.current) return;
+
+    const track = trackRef.current;
+    const delta = e.clientX - startX.current;
+    startX.current = e.clientX;
+
+    position.current += delta;
+
+    const limit = track.scrollWidth / 2;
+
+    // LOOP CONTROLADO PARA FRENTE E PARA TRÁS
+    if (position.current > 0) {
+      position.current -= limit;
+    }
+
+    if (Math.abs(position.current) >= limit) {
+      position.current += limit;
+    }
+
+    track.style.transform = `translateX(${position.current}px)`;
+  };
+
+  const onPointerUp = (e: React.PointerEvent) => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    isDragging.current = false;
+    track.releasePointerCapture(e.pointerId);
+  };
+
+  return (
+    <div className="relative max-w-4xl overflow-hidden">
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+
+      <div
+        ref={trackRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerLeave={onPointerUp}
+        className="flex gap-10 cursor-grab active:cursor-grabbing select-none"
+        style={{ willChange: "transform" }}
+      >
+        {[...skills, ...skills].map((skill, i) => (
+          <div
+            key={i}
+            className="group flex flex-col items-center justify-center
+                       min-w-[180px]
+                       p-8 rounded-2xl
+                       bg-background shadow-md
+                       hover:shadow-2xl hover:-translate-y-2
+                       transition-all duration-300"
+          >
+            <skill.icon
+              className="w-10 h-10 mb-4 text-muted-foreground
+                         transition-colors duration-300
+                         group-hover:text-primary"
+            />
+            <span
+              className="text-base font-medium text-center
+                         text-muted-foreground
+                         transition-colors duration-300
+                         group-hover:text-primary"
+            >
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export { type CarouselApi, Carousel, CarouselSkills, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };
