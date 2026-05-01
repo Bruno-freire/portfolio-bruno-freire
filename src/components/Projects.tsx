@@ -69,6 +69,7 @@ const Projects = () => {
       ],
       technologies: ["Next.js", "TypeScript"],
       github: "https://github.com/Bruno-freire/product-manager",
+      demo: "https://product-manager-p7tf.vercel.app/",
       objectives:
         "Fornecer uma ferramenta simples para monitorar e gerenciar o estoque de produtos de forma eficiente, para garantir a integridade do estoque do cliente",
       challenges:
