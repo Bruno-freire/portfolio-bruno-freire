@@ -32,7 +32,7 @@ export function ArchitectureNode({
         ${active ? `${colors.border} scale-105` : ""}
       `}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center  gap-3">
         <Icon
           size={20}
           className={

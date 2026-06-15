@@ -1,5 +1,16 @@
+// BackendCard.tsx
+
 "use client";
 
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { BackendProject } from "./types";
 import { ArchitectureNode } from "./ArchitectureNode";
@@ -34,20 +45,14 @@ const theme = {
   },
 };
 
-export default function BackendCard({
-  project,
-}: Props) {
+export default function BackendCard({ project }: Props) {
   const colors = theme[project.color];
 
   const [active, setActive] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActive(
-        (prev) =>
-          (prev + 1) %
-          project.architecture.nodes.length
-      );
+      setActive((prev) => (prev + 1) % project.architecture.nodes.length);
     }, 900);
 
     return () => clearInterval(interval);
@@ -55,144 +60,146 @@ export default function BackendCard({
 
   return (
     <div className="rounded-3xl border bg-card p-8 shadow-xl">
-      <div className="flex items-center gap-4 mb-8">
-        <div
-          className={`h-16 w-16 rounded-2xl flex items-center justify-center text-3xl ${colors.bg}`}
-        >
-          {project.emoji}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div className="flex items-center gap-4">
+          <div
+            className={`h-16 w-16 rounded-2xl flex items-center justify-center text-3xl ${colors.bg}`}
+          >
+            {project.emoji}
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-bold">{project.title}</h2>
+
+            <p className="text-muted-foreground mt-1">{project.description}</p>
+          </div>
         </div>
 
-        <div>
-          <h2 className="text-3xl font-bold">
-            {project.title}
-          </h2>
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button>Ver arquitetura</Button>
+          </DrawerTrigger>
 
-          <p className="text-muted-foreground">
-            {project.description}
-          </p>
-        </div>
-      </div>
+          <DrawerContent className="max-h-[95vh]">
+            <div className="mx-auto w-full max-w-7xl overflow-auto">
+              <DrawerHeader>
+                <DrawerTitle className="text-3xl">
+                  {project.emoji} {project.title}
+                </DrawerTitle>
+              </DrawerHeader>
 
-      <div className="grid lg:grid-cols-[2fr_1fr] gap-8">
-        <div className="rounded-2xl border p-6">
-          <h3 className="font-semibold mb-6">
-            Arquitetura
-          </h3>
+              <div className="flex flex-col gap-8 p-6">
+                <div className="rounded-2xl border p-6">
+                  <h3 className="font-semibold mb-6">Arquitetura</h3>
 
-          <div className="relative h-[620px] rounded-xl bg-muted/20 overflow-hidden">
-            <svg className="absolute inset-0 w-full h-full pointer-events-none">
-              {project.architecture.connections.map(
-                (connection, index) => {
-                  const from =
-                    project.architecture.nodes[
-                      connection.from
-                    ];
+                  <div className="w-full rounded-xl border bg-muted/20 overflow-x-auto overflow-y-hidden">
+                    <div
+                      className="relative h-[620px]"
+                      style={{
+                        width: "1050px",
+                      }}
+                    >
+                      <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                        {project.architecture.connections.map(
+                          (connection, index) => {
+                            const from =
+                              project.architecture.nodes[connection.from];
 
-                  const to =
-                    project.architecture.nodes[
-                      connection.to
-                    ];
+                            const to =
+                              project.architecture.nodes[connection.to];
 
-                  return (
-                    <line
-                      key={index}
-                      x1={`${from.x}%`}
-                      y1={`${from.y}%`}
-                      x2={`${to.x}%`}
-                      y2={`${to.y}%`}
-                      stroke="currentColor"
-                      strokeOpacity="0.25"
-                      strokeWidth="2"
-                      strokeDasharray="6 6"
-                    />
-                  );
-                }
-              )}
-            </svg>
+                            return (
+                              <line
+                                key={index}
+                                x1={`${from.x}%`}
+                                y1={`${from.y}%`}
+                                x2={`${to.x}%`}
+                                y2={`${to.y}%`}
+                                stroke="currentColor"
+                                strokeOpacity="0.25"
+                                strokeWidth="2"
+                                strokeDasharray="6 6"
+                              />
+                            );
+                          },
+                        )}
+                      </svg>
 
-            {project.architecture.nodes.map(
-              (item, index) => {
-                const Icon = item.icon;
+                      {project.architecture.nodes.map((item, index) => {
+                        const Icon = item.icon;
 
-                return (
-                  <div
-                    key={item.title}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{
-                      left: `${item.x}%`,
-                      top: `${item.y}%`,
-                    }}
-                  >
-                    <ArchitectureNode
-                      title={item.title}
-                      Icon={Icon}
-                      active={active === index}
-                      colors={colors}
-                    />
+                        return (
+                          <div
+                            key={item.title}
+                            className="absolute -translate-x-1/2 -translate-y-1/2"
+                            style={{
+                              left: `${item.x}%`,
+                              top: `${item.y}%`,
+                            }}
+                          >
+                            <ArchitectureNode
+                              title={item.title}
+                              Icon={Icon}
+                              active={active === index}
+                              colors={colors}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                );
-              }
-            )}
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <div className="rounded-2xl border p-5">
-            <h3 className="font-semibold mb-3">
-              Status
-            </h3>
-
-            <div
-              className={`inline-flex rounded-full px-4 py-2 ${colors.bg} ${colors.text}`}
-            >
-              ● {project.status}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border p-5">
-            <h3 className="font-semibold mb-3">
-              Stack
-            </h3>
-
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-full border px-3 py-1 text-sm"
-                >
-                  {item}
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="rounded-2xl border p-5">
-            <h3 className="font-semibold mb-3">
-              Capacidades
-            </h3>
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                  <div className="rounded-2xl border p-5">
+                    <h3 className="font-semibold mb-3">Status</h3>
 
-            <div className="space-y-2">
-              {project.features.map((item) => (
-                <div
-                  key={item}
-                  className="text-sm"
-                >
-                  ✓ {item}
+                    <div
+                      className={`inline-flex rounded-full px-4 py-2 ${colors.bg} ${colors.text}`}
+                    >
+                      ● {project.status}
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border p-5">
+                    <h3 className="font-semibold mb-3">Stack</h3>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.map((item) => (
+                        <div
+                          key={item}
+                          className="rounded-full border px-3 py-1 text-sm"
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border p-5">
+                    <h3 className="font-semibold mb-3">Capacidades</h3>
+
+                    <div className="space-y-2">
+                      {project.features.map((item) => (
+                        <div key={item} className="text-sm">
+                          ✓ {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border p-5">
+                    <h3 className="font-semibold mb-3">Objetivo</h3>
+
+                    <p className="text-sm text-muted-foreground leading-7">
+                      {project.objective}
+                    </p>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-
-          <div className="rounded-2xl border p-5">
-            <h3 className="font-semibold mb-3">
-              Objetivo
-            </h3>
-
-            <p className="text-sm text-muted-foreground leading-7">
-              {project.objective}
-            </p>
-          </div>
-        </div>
+          </DrawerContent>
+        </Drawer>
       </div>
     </div>
   );

@@ -32,6 +32,7 @@ export const backendProjects: BackendProject[] = [
 
     stack: [
       "NestJS",
+      "Typescript",
       "PostgreSQL",
       "Redis",
       "RabbitMQ",
@@ -51,88 +52,144 @@ export const backendProjects: BackendProject[] = [
       "Relatórios",
     ],
 
-    architecture: {
-      nodes: [
-        {
-          title: "Cliente",
-          icon: Layers3,
-          x: 50,
-          y: 5,
-        },
 
-        {
-          title: "Load Balancer",
-          icon: Cloud,
-          x: 50,
-          y: 20,
-        },
-
-        {
-          title: "API Gateway",
-          icon: Server,
-          x: 50,
-          y: 35,
-        },
-
-        {
-          title: "Auth",
-          icon: ShieldCheck,
-          x: 15,
-          y: 58,
-        },
-
-        {
-          title: "Orders",
-          icon: ShoppingCart,
-          x: 50,
-          y: 58,
-        },
-
-        {
-          title: "Products",
-          icon: Package,
-          x: 85,
-          y: 58,
-        },
-
-        {
-          title: "RabbitMQ",
-          icon: Boxes,
-          x: 50,
-          y: 80,
-        },
-
-        {
-          title: "Redis",
-          icon: DatabaseZap,
-          x: 25,
-          y: 95,
-        },
-
-        {
-          title: "PostgreSQL",
-          icon: Database,
-          x: 75,
-          y: 95,
-        },
-      ],
-
-      connections: [
-        { from: 0, to: 1 },
-        { from: 1, to: 2 },
-
-        { from: 2, to: 3 },
-        { from: 2, to: 4 },
-        { from: 2, to: 5 },
-
-        { from: 3, to: 6 },
-        { from: 4, to: 6 },
-        { from: 5, to: 6 },
-
-        { from: 6, to: 7 },
-        { from: 6, to: 8 },
-      ],
+architecture: {
+  nodes: [
+    {
+      title: "Cliente",
+      icon: Layers3,
+      x: 50,
+      y: 4,
     },
+
+    {
+      title: "Load Balancer",
+      icon: Cloud,
+      x: 50,
+      y: 14,
+    },
+
+    {
+      title: "API Gateway",
+      icon: Server,
+      x: 50,
+      y: 26,
+    },
+
+    {
+      title: "Auth",
+      icon: ShieldCheck,
+      x: 50,
+      y: 38,
+    },
+
+    {
+      title: "Admin",
+      icon: Users,
+      x: 25,
+      y: 52,
+    },
+
+    {
+      title: "Customer",
+      icon: Users,
+      x: 75,
+      y: 52,
+    },
+
+    {
+      title: "Orders",
+      icon: ShoppingCart,
+      x: 10,
+      y: 70,
+    },
+
+    {
+      title: "Products",
+      icon: Package,
+      x: 30,
+      y: 70,
+    },
+
+    {
+      title: "Tables",
+      icon: Workflow,
+      x: 50,
+      y: 70,
+    },
+
+    {
+      title: "Kitchen",
+      icon: Layers3,
+      x: 70,
+      y: 70,
+    },
+
+    {
+      title: "Promotions",
+      icon: Workflow,
+      x: 90,
+      y: 70,
+    },
+
+    {
+      title: "RabbitMQ",
+      icon: Boxes,
+      x: 50,
+      y: 86,
+    },
+
+    {
+      title: "Redis",
+      icon: DatabaseZap,
+      x: 25,
+      y: 97,
+    },
+
+    {
+      title: "PostgreSQL",
+      icon: Database,
+      x: 75,
+      y: 97,
+    },
+  ],
+
+  connections: [
+    // Entrada
+    { from: 0, to: 1 },
+    { from: 1, to: 2 },
+
+    // Gateway encaminha tudo para Auth
+    { from: 2, to: 3 },
+
+    // Auth decide o tipo de usuário
+    { from: 3, to: 4 },
+    { from: 3, to: 5 },
+
+    // Admin acessa serviços
+    { from: 4, to: 6 },
+    { from: 4, to: 7 },
+    { from: 4, to: 8 },
+    { from: 4, to: 9 },
+    { from: 4, to: 10 },
+
+    // Customer acessa serviços necessários
+    { from: 5, to: 6 },
+    { from: 5, to: 7 },
+    { from: 5, to: 8 },
+
+    // Microsserviços publicam eventos
+    { from: 6, to: 11 },
+    { from: 7, to: 11 },
+    { from: 8, to: 11 },
+    { from: 9, to: 11 },
+    { from: 10, to: 11 },
+
+    // Infraestrutura
+    { from: 11, to: 12 },
+    { from: 11, to: 13 },
+  ],
+},
   },
 
   {

@@ -26,7 +26,8 @@ const Navbar = () => {
     { id: "home", label: "Home" },
     { id: "about", label: "Sobre" },
     { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projetos" },
+    { id: "fullstack-projects", label: "Projetos Fullstack" },
+    { id: "backend-projects", label: "Projetos Back-end" },
     { id: "contact", label: "Contato" },
   ];
 
