@@ -6,6 +6,7 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Reveal } from "@/components/ui/reveal";
+import BackendProjects from "@/components/backend-projects";
 
 const Index = () => {
   return (
@@ -15,20 +16,19 @@ const Index = () => {
         <Hero />
       </Reveal>
       <Reveal>
-
-      <About />
+        <About />
       </Reveal>
       <Reveal>
-
-      <Skills />
+        <Skills />
       </Reveal>
       <Reveal>
-
-      <Projects />
+        <Projects />
       </Reveal>
       <Reveal>
-
-      <Contact />
+        <BackendProjects/>
+      </Reveal>
+      <Reveal>
+        <Contact />
       </Reveal>
       <Footer />
     </div>
