@@ -64,9 +64,8 @@ const About = () => {
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Trabalho com foco em arquitetura limpa, boas práticas e código
-                de fácil manutenção. Costumo atuar no backend com NestJS,Express, Fastify
-                Prisma, PostgreSQL e MongoDB, e no frontend com React,
-                Next.js e Tailwind. Gosto de aprender, evoluir e enfrentar
+                de fácil manutenção. Costumo atuar no backend com NestJS,Express, Fastify,
+                Prisma, PostgreSQL e MongoDB, além da criação de interfaces modernas e responsivas com React, Next.js e Tailwind CSS. Gosto de aprender, evoluir e enfrentar
                 desafios que realmente exigem raciocínio, organização e clareza
                 técnica.
               </p>
