@@ -46,7 +46,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Button
               size="lg"
-              onClick={() => scrollToSection("projects")}
+              onClick={() => scrollToSection("fullstack-projects")}
               className="group bg-gradient-to-r from-primary to-primary-light hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 text-base sm:text-lg px-6 sm:px-8"
             >
               Ver Projetos
